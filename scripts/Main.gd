@@ -2,9 +2,11 @@ extends Spatial
 
 enum GameState {
 	Wait,
-	Fading,
+	Opening,
 	Menu,
-	Game,
+	Moving,
+	Dialog,
+	Minigame,
 	End
 }
 
@@ -15,22 +17,13 @@ var state = GameState.Wait setget set_state
 var time = 0
 
 onready var Title = $UI/Title
+onready var Dialogue = $UI/Dialogue
 
 func _process(delta):
 	time += delta
 	match state:
 		GameState.Wait:
 			if time >= 0.3:
-				self.state = GameState.Fading
-				Title.open(3.5)
-		GameState.Game:
-			if time >= 2:
-				self.state = GameState.End
-				Title.end(3)
+				self.state = GameState.Opening
+				Title.animate("open", 3.5)
 
-func _on_open_complete():
-	self.state = GameState.Menu
-
-func _on_enter_complete():
-	# Start Game
-	self.state = GameState.Game

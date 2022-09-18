@@ -1,0 +1,17 @@
+[
+	{
+		"Name": "Bob",
+		"Text": "[wave amp=30 freq=5]Hello world![/wave]",
+		"Emotion": "Neutral"
+	},
+	{
+		"Name": "Fred",
+		"Text": "[shake rate=5 level=10]Interesting dialogue[/shake]",
+		"Emotion": "Neutral"
+	},
+	{
+		"Name": "Bob",
+		"Text": "[rainbow freq=0.2 sat=10 val=20]WOW[/rainbow]",
+		"Emotion": "Neutral"
+	}
+]

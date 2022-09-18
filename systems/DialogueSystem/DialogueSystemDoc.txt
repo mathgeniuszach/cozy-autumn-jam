@@ -1,0 +1,33 @@
+Store all json files in a folder named "DialogueData"
+Name any character portraits "characters name" + "emotion" and save as a png in the DialogueData folder (ex "BobHappy").
+The "DialogueData" folder should be at the top of the resource directory.
+Dialogue can be broken into "phrases" with the character name, text and emotion if portraits are being used (BBcode can be used for text)
+
+ex:
+Name: Bob
+Text: Hello World!
+Emotion: Happy
+
+Name: Fred
+Text: Interesting text.
+Emotion: Neutral
+
+Dialogue functions:
+
+start(String)
+-Starts a new conversation, ends any previously active conversations
+-Include the name of the conversation file (the actual filepath is not nessecary as long as the conversation file is stored in the "DialogueData" folder).
+
+next()
+-If all the dialogue has been shown, displays the next phrase. If the previous phrase has not finished it will show the rest of the phrase and will not continue until next() is called again.
+
+end()
+-Ends the current conversation
+-A conversation will automatically end once all the phrases have been displayed and does not require the use of end_dialogue
+
+pause(bool)
+-Pauses or unpauses based on if the given value is true (pause) or false (unpause)
+-Pausing dialogue stops new letters from appearing and disables the ability to skip to the next phrase
+
+set_text_speed(float)
+-Sets the text display speed to the given value

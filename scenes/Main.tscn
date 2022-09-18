@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Options.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=2]
 [ext_resource path="res://scenes/World.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/UI.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Title.tscn" type="PackedScene" id=5]
+[ext_resource path="res://systems/DialogueSystem/Dialogue.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Spatial"]
 script = ExtResource( 2 )
@@ -18,7 +19,6 @@ script = ExtResource( 4 )
 
 [node name="Options" parent="UI" instance=ExtResource( 1 )]
 
-[node name="World" parent="." instance=ExtResource( 3 )]
+[node name="Dialogue" parent="UI" instance=ExtResource( 6 )]
 
-[connection signal="enter_complete" from="UI/Title" to="." method="_on_enter_complete"]
-[connection signal="open_complete" from="UI/Title" to="." method="_on_open_complete"]
+[node name="World" parent="." instance=ExtResource( 3 )]
