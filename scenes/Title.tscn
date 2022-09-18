@@ -3,7 +3,6 @@
 [ext_resource path="res://scripts/Title.gd" type="Script" id=1]
 [ext_resource path="res://assets/Theme.tres" type="Theme" id=2]
 [ext_resource path="res://scripts/FadeOut.gd" type="Script" id=3]
-[ext_resource path="res://scripts/Play.gd" type="Script" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -170,6 +169,21 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "enter"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fader:fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -366,7 +380,7 @@ color = Color( 0.745098, 0.0705882, 0.737255, 1 )
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0.0392157, 0.160784, 1 )
+color = Color( 0.141176, 0.141176, 0.141176, 1 )
 script = ExtResource( 3 )
 
 [node name="Play" type="Button" parent="."]
@@ -379,11 +393,11 @@ margin_right = 50.0
 rect_pivot_offset = Vector2( 50, 30 )
 disabled = true
 text = "Play"
-script = ExtResource( 4 )
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 7 )
 anims/end = SubResource( 4 )
+anims/enter = SubResource( 8 )
 anims/open = SubResource( 6 )
 anims/play = SubResource( 5 )
 

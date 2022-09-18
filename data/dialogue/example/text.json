@@ -1,7 +1,7 @@
 [
 	{
 		"Name": "Bob",
-		"Text": "[wave amp=30 freq=5]Hello world![/wave]",
+		"Text": "Once Upon a Time, there was a young Witch. A very grouchy, seclusive, and very, [bold]very[/bold] tired witch.",
 		"Emotion": "Neutral"
 	},
 	{

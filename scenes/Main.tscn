@@ -23,4 +23,8 @@ script = ExtResource( 4 )
 
 [node name="World" parent="." instance=ExtResource( 3 )]
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="anim_done" from="UI/Title" to="." method="_anim_done"]
+[connection signal="dialogue_end" from="UI/Dialogue" to="." method="_dialogue_done"]
+[connection signal="interact" from="World" to="." method="_interact"]

@@ -13,6 +13,7 @@ config_version=4
 config/name="CozyWitch"
 run/main_scene="res://scenes/Main.tscn"
 boot_splash/show_image=false
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 
 [gui]

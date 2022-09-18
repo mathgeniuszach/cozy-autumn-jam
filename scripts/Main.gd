@@ -10,20 +10,34 @@ enum GameState {
 	End
 }
 
+onready var Title = $UI/Title
+onready var OptionsButton = $UI/Options/Button
+onready var Dialogue = $UI/Dialogue
+onready var UI = $UI
+onready var Timer = $Timer
+onready var World = $World
+onready var Player = $World/Player
+
+var creating = false
+var created = null
+var level = 1
+
 func set_state(v):
-	state = v
+	if state != v:
+		if state == GameState.Dialogue:
+			World.unlocked = true
+			World.no_act_time = 0.5
+		state = v
+		if state == GameState.Dialogue:
+			World.unlocked = false
 	time = 0
 var state = GameState.Wait setget set_state
 var time = 0
 
-onready var Title = $UI/Title
-onready var OptionsButton = $UI/Options/Button
-onready var Dialogue = $UI/Dialogue
-
 func _process(delta):
 	# If nothing else is focused and the user focuses, select the options button
 	if Input.is_action_just_pressed("ui_focus_next") or Input.is_action_just_pressed("ui_focus_prev"):
-		if not $UI.get_focus_owner():
+		if not UI.get_focus_owner():
 			OptionsButton.grab_focus()
 	
 	time += delta
@@ -39,5 +53,24 @@ func _process(delta):
 func _anim_done(anim: String):
 	match anim:
 		"play":
-			self.state = GameState.Dialogue
+			Timer.start(0.3)
+			yield(Timer, "timeout")
+			Player.visible = true
 			Dialogue.start("opening")
+			self.state = GameState.Dialogue
+		"enter":
+			self.state = GameState.Moving
+
+func _dialogue_done(conversation: String):
+	match conversation:
+		"opening":
+			Timer.start(0.3)
+			yield(Timer, "timeout")
+			Title.animate("enter", 1.1)
+		_:
+			self.state = GameState.Moving
+
+func _interact(object: String):
+	if object[0] == "w":
+		Dialogue.start("wall")
+		self.state = GameState.Dialogue

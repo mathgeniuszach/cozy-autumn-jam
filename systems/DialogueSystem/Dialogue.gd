@@ -4,7 +4,7 @@ const DATA_LOC = "res://data/dialogue/"
 
 var conversation = ""
 export var text_speed = 0.04
-export var text_full_stop = 0.4
+export var text_full_stop = 0.8
 export var text_half_stop = 0.2
 
 var dialogue
@@ -19,9 +19,9 @@ onready var textUI = $DialogueBox/Text
 onready var portrait = $DialogueBox/Portrait
 onready var indicator = $DialogueBox/Indicator
 
-signal dialogue_end
+signal dialogue_end(conversation)
 
-func _process(delta):
+func _process(_delta):
 	$DialogueBox.visible = active
 	indicator.visible = phrase_finished
 
@@ -41,7 +41,6 @@ func end():
 	phrase_finished = true
 	playing = false
 	active = false
-	emit_signal("dialogue_end")
 
 func next():
 	if playing:
@@ -71,8 +70,8 @@ func _get_dialogue() -> Array:
 func _next_phrase():
 	if phrase_num >= len(dialogue):
 		phrase_finished = true
+		if active: emit_signal("dialogue_end", conversation)
 		active = false
-		emit_signal("dialogue_end")
 		return
 	
 	phrase_finished = false
@@ -94,22 +93,22 @@ func _next_phrase():
 	
 	timer.wait_time = text_speed
 	while textUI.visible_characters < len(textUI.text):
+		if textUI.visible_characters:
+			match textUI.text[textUI.visible_characters-1]:
+				'.', ';':
+					timer.wait_time = text_speed + text_full_stop
+				',':
+					timer.wait_time = text_speed + text_half_stop
+				_:
+					timer.wait_time = text_speed
+		
 		timer.start()
 		yield(timer, "timeout")
 		
-		#add dialogue sfx here
-		
-		match textUI.text[textUI.visible_characters]:
-			'.':
-				timer.wait_time = text_speed + text_full_stop
-			',':
-				timer.wait_time = text_speed + text_half_stop
-			_:
-				timer.wait_time = text_speed
-		
 		if playing:
 			textUI.visible_characters += 1
+			
+			# Add dialogue sfx here
 	
 	phrase_finished = true
 	phrase_num += 1
-	return
