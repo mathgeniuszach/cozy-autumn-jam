@@ -1,5 +1,8 @@
 extends Control
 
+signal music_vol_change(new_vol)
+signal fx_vol_change(new_vol)
+
 export var BASE_COLOR = Color("#ffffe1")
 export var LIGHT_COLOR = Color("#aed19a")
 export var DARK_COLOR = Color("#7e9770")
@@ -67,10 +70,12 @@ func load_opts():
 func _on_music_volume_change(value):
 	music_volume = value
 	MusicPercent.text = str(music_volume)+"%"
+	emit_signal("music_vol_change", music_volume, fx_volume)
 
 func _on_fx_volume_change(value):
 	fx_volume = value
 	FXPercent.text = str(fx_volume)+"%"
+	emit_signal("fx_vol_change", music_volume, fx_volume)
 
 func _on_drag_end(_v):
 	save_opts()

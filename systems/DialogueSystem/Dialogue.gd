@@ -3,7 +3,9 @@ extends Control
 const DATA_LOC = "res://data/dialogue/"
 
 var conversation = ""
-export var text_speed = 0.05
+export var text_speed = 0.04
+export var text_full_stop = 0.4
+export var text_half_stop = 0.2
 
 var dialogue
 var phrase_num = 0
@@ -26,7 +28,6 @@ func _process(delta):
 func start(_conversation : String):
 	end()
 	conversation = _conversation
-	timer.wait_time = text_speed
 	
 	phrase_num = 0
 	phrase_finished = false
@@ -90,13 +91,24 @@ func _next_phrase():
 			portrait.texture = null
 	else:
 		portrait.texture = null
-		
+	
+	timer.wait_time = text_speed
 	while textUI.visible_characters < len(textUI.text):
-		if playing:
-			textUI.visible_characters += 1
-		#add dialogue sfx here
 		timer.start()
 		yield(timer, "timeout")
+		
+		#add dialogue sfx here
+		
+		match textUI.text[textUI.visible_characters]:
+			'.':
+				timer.wait_time = text_speed + text_full_stop
+			',':
+				timer.wait_time = text_speed + text_half_stop
+			_:
+				timer.wait_time = text_speed
+		
+		if playing:
+			textUI.visible_characters += 1
 	
 	phrase_finished = true
 	phrase_num += 1

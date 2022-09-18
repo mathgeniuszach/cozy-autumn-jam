@@ -22,3 +22,5 @@ script = ExtResource( 4 )
 [node name="Dialogue" parent="UI" instance=ExtResource( 6 )]
 
 [node name="World" parent="." instance=ExtResource( 3 )]
+
+[connection signal="anim_done" from="UI/Title" to="." method="_anim_done"]
