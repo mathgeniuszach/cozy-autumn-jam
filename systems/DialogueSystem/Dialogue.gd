@@ -1,6 +1,8 @@
 extends Control
 
 const DATA_LOC = "res://data/dialogue/"
+const FACES = "faces/"
+const COLORS = "colors.json"
 
 var conversation = ""
 export var text_speed = 0.04
@@ -12,6 +14,8 @@ var phrase_num = 0
 var phrase_finished = false
 var playing = true
 var active = false
+
+onready var colors = _get_colors()
 
 onready var timer = $DialogueBox/Timer
 onready var nameUI = $DialogueBox/Name
@@ -56,16 +60,21 @@ func set_text_speed(val : float):
 	text_speed = val
 	timer.wait_time = text_speed
 
+func _get_colors() -> Dictionary:
+	var path = DATA_LOC + COLORS
+	var file = File.new()
+	assert(file.file_exists(path), "Character color file does not exist")
+	
+	file.open(path, file.READ)
+	return parse_json(file.get_as_text())
+
 func _get_dialogue() -> Array:
 	var path = DATA_LOC + conversation + ".json"
 	var file = File.new()
-	assert(file.file_exists(path), "File path does not exist")
+	assert(file.file_exists(path), 'File for conversation "' + conversation + '" does not exist')
 	
 	file.open(path, file.READ)
-	var text = file.get_as_text()
-	var output = parse_json(text)
-	
-	return output
+	return parse_json(file.get_as_text())
 
 func _next_phrase():
 	if phrase_num >= len(dialogue):
@@ -75,15 +84,14 @@ func _next_phrase():
 		return
 	
 	phrase_finished = false
-	
-	nameUI.bbcode_text = dialogue[phrase_num]["Name"]
-	textUI.bbcode_text = dialogue[phrase_num]["Text"]
-	
 	textUI.visible_characters = 0
 	
-	if dialogue[phrase_num].has("Emotion"):
+	var phrase = dialogue[phrase_num]
+	var speaker = phrase["Name"]
+	
+	if phrase.has("Emotion"):
 		var file = File.new()
-		var img = DATA_LOC + dialogue[phrase_num]["Name"] + dialogue[phrase_num]["Emotion"] + ".png"
+		var img = DATA_LOC + FACES + speaker + phrase["Emotion"] + ".png"
 		if file.file_exists(img):
 			portrait.texture = load(img)
 		else:
@@ -91,7 +99,12 @@ func _next_phrase():
 	else:
 		portrait.texture = null
 	
-	timer.wait_time = text_speed
+	if colors.has(speaker):
+		nameUI.bbcode_text = "[color=" + colors[speaker] + "]" + speaker + "[/color]"
+	else:
+		nameUI.bbcode_text = speaker
+	textUI.bbcode_text = phrase["Text"]
+	
 	while textUI.visible_characters < len(textUI.text):
 		if textUI.visible_characters:
 			match textUI.text[textUI.visible_characters-1]:
@@ -101,6 +114,8 @@ func _next_phrase():
 					timer.wait_time = text_speed + text_half_stop
 				_:
 					timer.wait_time = text_speed
+		else:
+			timer.wait_time = text_speed
 		
 		timer.start()
 		yield(timer, "timeout")
