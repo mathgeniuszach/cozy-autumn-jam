@@ -1,0 +1,14 @@
+[
+    {
+        "Name": "Mushroom Witch",
+        "Text": "Thanks for that, and... sorry about this? Have a nice rest, I'll take care of the shop while you rest, so don't you worry about a thing."
+    },
+    {
+        "Name": "Tired Witch",
+        "Text": "...Hmm?"
+    },
+    {
+        "Name": "Mushroom Witch",
+        "Text": "[[i]Throws some of the sleeping powder in the Tired Witch's face[/i]]"
+    }
+]

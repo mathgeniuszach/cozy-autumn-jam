@@ -1,0 +1,20 @@
+[
+    {
+        "Name": "Dotting Mother",
+        "Text": "Oh my gosh you still sell these! You see back when I was a youngster like you..."
+    },
+    {
+        "Name": "...",
+        "Text": "[i]Five Minutes Later...[/i]",
+        "Anims": ["fade_out"]
+    },
+    {
+        "Name": "Dotting Mother",
+        "Text": "...Hahaha! Anyways hun, if it's alright with you why don't you go on and see what else you've got in stock because I think I'm gonna be buying this one here for myself...",
+        "Anims": ["fade_in"]
+    },
+    {
+        "Name": "Tired Witch",
+        "Text": "([wave amp=35 freq=1.8][i]pain[/i][/wave])"
+    }
+]

@@ -1,0 +1,31 @@
+{
+    "...": {
+        "Talkspeed": 0.5,
+        "Talkpitch": 0.8
+    },
+    "Tired Witch": {
+        "Color": "#6e0072",
+        "Talkspeed": 1,
+        "Talkpitch": 0.6
+    },
+    "Mushroom Witch": {
+        "Color": "#720027",
+        "Talkspeed": 1,
+        "Talkpitch": 0.9
+    },
+    "Dotting Mother": {
+        "Color": "#007269",
+        "Talkspeed": 1.2,
+        "Talkpitch": 1.1
+    },
+    "Jack-o'-NightLight": {
+        "Color": "#a46300",
+        "Talkspeed": 0.6,
+        "Talkpitch": 0.35
+    },
+    "Vampire Prince": {
+        "Color": "#b20b00",
+        "Talkspeed": 0.9,
+        "Talkpitch": 0.2
+    }
+}

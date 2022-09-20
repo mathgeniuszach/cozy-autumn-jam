@@ -1,0 +1,30 @@
+[
+    {
+        "Name": "Mushroom Witch",
+        "Text": "Howdy! So you must be the one who took up this shop. Glad to have you around!"
+    },
+    {
+        "Name": "Tired Witch",
+        "Text": "...who are you?"
+    },
+    {
+        "Name": "Mushroom Witch",
+        "Text": "Aw come on now, don't tell me you don't recognize me? It's me! From that time you visited Great Aunt Gloom? Bless her soul."
+    },
+    {
+        "Name": "Tired Witch",
+        "Text": "([i]...wasn't that several years ago? And even then, only for like, what, 3 days?[/i])"
+    },
+    {
+        "Name": "Mushroom Witch",
+        "Text": "But enough about me. How've you been? Been settling in alright? Got the ol' shop all up an' running?"
+    },
+    {
+        "Name": "Mushroom Witch",
+        "Text": "Tell ya what, you seem pretty tired from your trip, so why don't you make me something to prove you got the skills to run this place, and I'll get out of your hair."
+    },
+    {
+        "Name": "Tired Witch",
+        "Text": "([i]...A Lucky Charm should be enough to get her to leave[/i])"
+    }
+]

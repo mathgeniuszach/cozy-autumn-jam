@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/World.gd" type="Script" id=1]
 
@@ -22,25 +22,75 @@ material = SubResource( 3 )
 
 [sub_resource type="BoxShape" id=9]
 
-[sub_resource type="CubeMesh" id=10]
+[sub_resource type="SpatialMaterial" id=13]
+
+[sub_resource type="CubeMesh" id=14]
+material = SubResource( 13 )
+
+[sub_resource type="SpatialMaterial" id=17]
+albedo_color = Color( 0.815686, 0.803922, 0.145098, 1 )
+
+[sub_resource type="CubeMesh" id=18]
+material = SubResource( 17 )
+
+[sub_resource type="SpatialMaterial" id=19]
+albedo_color = Color( 0.513726, 0.0901961, 0.607843, 1 )
+
+[sub_resource type="CubeMesh" id=20]
+material = SubResource( 19 )
+
+[sub_resource type="SpatialMaterial" id=21]
+albedo_color = Color( 0.945098, 0.858824, 0.690196, 1 )
+
+[sub_resource type="CubeMesh" id=22]
+material = SubResource( 21 )
+
+[sub_resource type="SpatialMaterial" id=23]
+albedo_color = Color( 0.172549, 0, 1, 1 )
+
+[sub_resource type="CubeMesh" id=24]
+material = SubResource( 23 )
+
+[sub_resource type="SpatialMaterial" id=25]
+albedo_color = Color( 0.4, 0.788235, 0.792157, 1 )
+
+[sub_resource type="CubeMesh" id=26]
+material = SubResource( 25 )
+
+[sub_resource type="SpatialMaterial" id=27]
+albedo_color = Color( 0.14902, 0.14902, 0.14902, 1 )
+
+[sub_resource type="CubeMesh" id=28]
+material = SubResource( 27 )
+
+[sub_resource type="SpatialMaterial" id=15]
+albedo_color = Color( 0.580392, 0.133333, 0.133333, 1 )
+
+[sub_resource type="CubeMesh" id=16]
+material = SubResource( 15 )
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
+[node name="MainCamera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.635175, 0.772368, 0, -0.772368, 0.635175, 0, 7.89065, 5.19389 )
 environment = SubResource( 1 )
 current = true
 
+[node name="SideCamera" type="Camera" parent="."]
+transform = Transform( 0.5, 0.66889, -0.550078, 0, 0.635175, 0.772368, 0.866025, -0.386184, 0.317588, -2.89934, 4.1053, 3.99505 )
+environment = SubResource( 1 )
+
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 4, 0, 0, 0, 0.2, 0, 0, 0, 4, 0, 0, 0 )
+transform = Transform( 7.6, 0, 0, 0, 0.2, 0, 0, 0, 6.8, 0, 0, 0 )
 mesh = SubResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.992119, -0.0477375, 0.115849, -0.0811735, 0.459447, 0.884488, -0.0954495, -0.886922, 0.451951, 0, 4.41, 0 )
+transform = Transform( 0.970962, -0.150921, -0.185622, 0.189104, 0.00893086, 0.981916, -0.146534, -0.988505, 0.0372114, 0, 4.41, 0 )
+light_energy = 1.75
 
 [node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.7, 0 )
+transform = Transform( -0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 0.7, 0 )
 visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
@@ -53,11 +103,97 @@ mesh = SubResource( 8 )
 transform = Transform( 0.739351, 0, 0, 0, 0.340675, 0, 0, 0, 1, 0, 0, -0.455176 )
 mesh = SubResource( 6 )
 
+[node name="Customer" type="KinematicBody" parent="."]
+transform = Transform( 0.5, 0, 8.74228e-08, 0, 0.5, 0, -8.74228e-08, 0, 0.5, 0.215394, 0.7, 4.59 )
+visible = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Customer"]
+shape = SubResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Customer"]
+mesh = SubResource( 8 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Customer"]
+transform = Transform( 0.739351, 0, 0, 0, 0.340675, 0, 0, 0, 1, 0, 0, -0.455176 )
+mesh = SubResource( 6 )
+
 [node name="w1" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.41514 )
+transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 1, 3.48027, 0.626816, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="w1"]
 shape = SubResource( 9 )
 
 [node name="MeshInstance" type="MeshInstance" parent="w1"]
-mesh = SubResource( 10 )
+transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
+mesh = SubResource( 14 )
+
+[node name="mLuckyCharm" type="StaticBody" parent="."]
+transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.4, -4.92831, 0.626816, -4.92827 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mLuckyCharm"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="mLuckyCharm"]
+transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
+mesh = SubResource( 18 )
+
+[node name="mVoodooDoll" type="StaticBody" parent="."]
+transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.429687, -3.46245, 0.626816, -4.90834 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mVoodooDoll"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="mVoodooDoll"]
+transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
+mesh = SubResource( 20 )
+
+[node name="mDreamCatcher" type="StaticBody" parent="."]
+transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.417773, -2.14585, 0.626817, -4.90877 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mDreamCatcher"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="mDreamCatcher"]
+transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
+mesh = SubResource( 22 )
+
+[node name="mRecoveryPotion" type="StaticBody" parent="."]
+transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.427762, -0.749298, 0.626816, -4.98267 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mRecoveryPotion"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="mRecoveryPotion"]
+transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
+mesh = SubResource( 24 )
+
+[node name="mMagicMirror" type="StaticBody" parent="."]
+transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.414212, 0.606245, 0.626816, -4.95223 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mMagicMirror"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="mMagicMirror"]
+transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
+mesh = SubResource( 26 )
+
+[node name="mSleepPowder" type="StaticBody" parent="."]
+transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.410529, 2.0986, 0.626816, -5.00571 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mSleepPowder"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="mSleepPowder"]
+transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
+mesh = SubResource( 28 )
+
+[node name="c" type="StaticBody" parent="."]
+transform = Transform( -1.5739e-08, 0, 1, 0, 0.326878, 0, -0.360067, 0, -4.37114e-08, -0.324065, 0.487059, 2.74225 )
+
+[node name="CollisionShape" type="CollisionShape" parent="c"]
+shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="c"]
+mesh = SubResource( 16 )
+
+[node name="Minigames" type="Spatial" parent="."]

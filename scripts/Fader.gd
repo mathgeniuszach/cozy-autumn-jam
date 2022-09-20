@@ -10,5 +10,5 @@ func set_fade(v):
 
 export var fade: float = 0 setget set_fade
 
-func _ready():
-	material.set("shader_param/color", Vector3(color.r, color.g, color.b))
+func _process(delta):
+	material.set("shader_param/color", color)

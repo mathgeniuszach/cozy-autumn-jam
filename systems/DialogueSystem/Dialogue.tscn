@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/fonts/Mali-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/vectors/triangle_up.svg" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/fonts/Mali-Italic.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://systems/DialogueSystem/Dialogue.gd" type="Script" id=6]
 [ext_resource path="res://assets/fonts/Mali-BoldItalic.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/sounds/interface/click_002.ogg" type="AudioStream" id=8]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.596078, 0.505882, 0.666667, 1 )
@@ -50,7 +51,6 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
-use_mipmaps = true
 use_filter = true
 extra_spacing_bottom = -8
 font_data = ExtResource( 1 )
@@ -150,3 +150,6 @@ anims/Indicator_idle = SubResource( 4 )
 
 [node name="Timer" type="Timer" parent="DialogueBox"]
 one_shot = true
+
+[node name="Ticker" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
