@@ -12,6 +12,10 @@ onready var MusicPercent = $Panel/Rows/Music/MusicPercent
 onready var FXVolume = $Panel/Rows/FX/FXVolume
 onready var FXPercent = $Panel/Rows/FX/FXPercent
 
+onready var MusicPlayer = $"../../MusicPlayer"
+onready var Ticker = $"../Dialogue/Ticker"
+onready var DoorbellPlayer = $"../../DoorbellPlayer"
+
 var open = false
 var opacity = 0
 var mouse_in = true
@@ -66,15 +70,22 @@ func load_opts():
 	MusicPercent.text = str(music_volume)+"%"
 	FXVolume.value = fx_volume
 	FXPercent.text = str(fx_volume)+"%"
+	
+	MusicPlayer.volume = music_volume / 100.0
+	DoorbellPlayer.volume_db = linear2db(fx_volume / 100.0)
+	Ticker.volume_db = linear2db(fx_volume / 100.0)
 
 func _on_music_volume_change(value):
 	music_volume = value
 	MusicPercent.text = str(music_volume)+"%"
+	MusicPlayer.volume = value / 100.0
 	emit_signal("music_vol_change", music_volume, fx_volume)
 
 func _on_fx_volume_change(value):
 	fx_volume = value
 	FXPercent.text = str(fx_volume)+"%"
+	DoorbellPlayer.volume_db = linear2db(value / 100.0)
+	Ticker.volume_db = linear2db(value / 100.0)
 	emit_signal("fx_vol_change", music_volume, fx_volume)
 
 func _on_drag_end(_v):

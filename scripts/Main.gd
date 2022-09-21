@@ -16,6 +16,10 @@ onready var UI = $UI
 onready var Timer = $Timer
 onready var World = $World
 onready var Player = $World/Player
+onready var MainCamera = $World/MainCamera
+onready var SideCamera = $World/SideCamera
+onready var DoorbellPlayer = $DoorbellPlayer
+onready var MusicPlayer = $MusicPlayer
 
 var correct_creations = [
 	"LuckyCharm",
@@ -52,6 +56,7 @@ func _process(delta):
 	match state:
 		GameState.Opening:
 			if time >= 0.3:
+				MusicPlayer.queue_song("calm")
 				Title.animate("open", 3.5)
 				yield(Title, "anim_done")
 				self.state = GameState.Menu
@@ -84,9 +89,6 @@ func _anim_done(anim: String):
 			# Finally, enter moving state and let the player choose where to go
 			self.state = GameState.Moving
 
-func _dialogue_done(conversation: String):
-	pass
-
 func _interact(object: String):
 	match object[0]:
 		"w": # Interacted with a wall
@@ -104,7 +106,7 @@ func _interact(object: String):
 					yield(Title, "anim_done")
 					
 					# Switch camera
-					$World/SideCamera.current = true
+					SideCamera.current = true
 					
 					# Fade back in
 					Title.animate("fade_in", 0.5)
@@ -127,21 +129,29 @@ func _interact(object: String):
 					# Check if all levels have been completed
 					if not creating and level >= len(correct_creations):
 						# We beat everything! Transition to end screen.
+						MusicPlayer.queue_song(null)
 						Title.animate("end", 4)
+						Timer.start("2")
+						yield(Timer, "timeout")
+						MusicPlayer.queue_song("calm")
 						self.state = GameState.End
 						return
 					
 					# Fade out
+					MusicPlayer.queue_song(null)
 					Title.animate("fade_out", 0.5)
 					yield(Title, "anim_done")
 					
 					# Switch camera and determine what to do with the customer
-					$World/MainCamera.current = true
+					MainCamera.current = true
 					if not creating:
-						# TODO: Successful submission. Hide the customer, and play bell
+						# Successful submission. Hide the customer, and play bell
 						if level != 4:
 							$World/Customer.visible = false
+							DoorbellPlayer.play()
+							yield(DoorbellPlayer, "finished")
 					# Fade back in
+					MusicPlayer.queue_song("calm")
 					Title.animate("fade_in", 0.5)
 					yield(Title, "anim_done")
 					
@@ -155,18 +165,21 @@ func _interact(object: String):
 					self.state = GameState.Moving
 			else:
 				# Fade out into next level
+				MusicPlayer.queue_song(null)
 				Title.animate("fade_out", 0.5)
 				yield(Title, "anim_done")
 				
 				# increment level
 				level += 1
 				# Switch camera, add customer model, and bell
-				$World/SideCamera.current = true
+				SideCamera.current = true
 				if level != 4:
-					# TODO: bell
+					DoorbellPlayer.play()
+					yield(DoorbellPlayer, "finished")
 					$World/Customer.visible = true
 				
 				# Fade back in, now with character in place
+				MusicPlayer.queue_song("spicy_intro")
 				Title.animate("fade_in", 0.5)
 				yield(Title, "anim_done")
 				
@@ -180,7 +193,7 @@ func _interact(object: String):
 				yield(Title, "anim_done")
 				
 				# Switch camera again
-				$World/MainCamera.current = true
+				MainCamera.current = true
 				
 				# Fade back in
 				Title.animate("fade_in", 0.5)
@@ -240,7 +253,7 @@ func _interact(object: String):
 #			yield(Title, "anim_done")
 #
 #			# Switch camera and player model back
-#			$World/MainCamera.current = true
+#			MainCamera.current = true
 #			Player.transform = ptransform
 #
 #			# Fade back in
