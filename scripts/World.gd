@@ -16,7 +16,7 @@ export var angular_speed = 10
 export var resistance = 500
 
 var motion: Vector3 = Vector3.ZERO
-var last_move_vec = move_map["down"]
+var last_move_vec = Vector3(move_map["down"].y, 0, move_map["down"].x)
 var last_move_angle = move_map["down"].angle()
 
 var unlocked = false

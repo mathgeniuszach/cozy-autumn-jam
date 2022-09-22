@@ -195,5 +195,3 @@ shape = SubResource( 9 )
 
 [node name="MeshInstance" type="MeshInstance" parent="c"]
 mesh = SubResource( 16 )
-
-[node name="Minigames" type="Spatial" parent="."]

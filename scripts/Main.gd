@@ -25,10 +25,11 @@ var correct_creations = [
 	"LuckyCharm",
 	"VoodooDoll",
 	"DreamCatcher",
-	"RecoveryPotion",
+#	"RecoveryPotion",
 	"MagicMirror",
 	"SleepPowder"
 ]
+var minigames = _get_minigames()
 
 var creating = false
 var created = null
@@ -45,6 +46,12 @@ func set_state(v):
 	time = 0
 var state = GameState.Opening setget set_state
 var time = 0
+
+func _get_minigames():
+	var ms = {}
+	for minigame in correct_creations:
+		ms[minigame] = load("res://systems/Minigames/%s/%s.tscn" % [minigame, minigame])
+	return ms
 
 func _process(delta):
 	# If nothing else is focused and the user focuses, select the options button
@@ -225,40 +232,41 @@ func _interact(object: String):
 			
 			World.unlocked = false
 			
-#			# Fade out
-#			Title.animate("fade_out", 0.5)
-#			yield(Title, "anim_done")
+			# Fade out
+			Title.animate("fade_out", 0.5)
+			yield(Title, "anim_done")
 			
 			# Get minigame
 			created = object.substr(1)
-			var success = true
-#			var minigame = World.get_node("Minigames/"+created)
-#
-#			# Switch camera and move player model
-#			var ptransform = Player.transform
-#			minigame.orient(Player)
-#
-#			# Fade in
-#			Title.animate("fade_in", 0.5)
-#			yield(Title, "anim_done")
-#
-#			# Transfer control to minigame
-#			self.state = GameState.Minigame
-#			minigame.start()
-#			var success = yield(minigame, "finish")
-#			if not success: created = null
-#
-#			# Fade out
-#			Title.animate("fade_out", 0.5)
-#			yield(Title, "anim_done")
-#
-#			# Switch camera and player model back
-#			MainCamera.current = true
-#			Player.transform = ptransform
-#
-#			# Fade back in
-#			Title.animate("fade_in", 0.5)
-#			yield(Title, "anim_done")
+			var minigame = minigames[created].instance()
+			add_child(minigame)
+
+			# Switch camera and move player model
+			var ptransform = Player.transform
+			# TODO: NEW CAMERA AND PLAYER LOCATION
+
+			# Fade in
+			Title.animate("fade_in", 0.5)
+			yield(Title, "anim_done")
+
+			# Transfer control to minigame
+			self.state = GameState.Minigame
+			minigame.start()
+			var success = yield(minigame, "game_finish")
+			if not success: created = null
+
+			# Fade out
+			Title.animate("fade_out", 0.5)
+			yield(Title, "anim_done")
+
+			# Switch camera and player model back
+			minigame.queue_free()
+			MainCamera.current = true
+			Player.transform = ptransform
+
+			# Fade back in
+			Title.animate("fade_in", 0.5)
+			yield(Title, "anim_done")
 			
 			# Dialogue
 			if success:
