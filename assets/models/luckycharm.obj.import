@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/luckycharm.obj-2148e8bf7a7f745e8f5987bc34eed5cc.mesh"
+
+[deps]
+
+files=[ "res://.import/luckycharm.obj-2148e8bf7a7f745e8f5987bc34eed5cc.mesh" ]
+
+source_file="res://assets/models/luckycharm.obj"
+dest_files=[ "res://.import/luckycharm.obj-2148e8bf7a7f745e8f5987bc34eed5cc.mesh", "res://.import/luckycharm.obj-2148e8bf7a7f745e8f5987bc34eed5cc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

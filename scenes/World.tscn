@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=107 format=2]
 
 [ext_resource path="res://scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/Imports_Meshes/SM_AllMESHES_OBJ.obj" type="ArrayMesh" id=2]
@@ -54,6 +54,25 @@
 [ext_resource path="res://assets/textures/plantpot/SM_AllMESHES_OBJ_Pot_AO.png" type="Texture" id=52]
 [ext_resource path="res://assets/textures/plantpot/SM_AllMESHES_OBJ_Pot_Normal.png" type="Texture" id=53]
 [ext_resource path="res://assets/textures/plantpot/SM_AllMESHES_OBJ_Pot_Metallic.png" type="Texture" id=54]
+[ext_resource path="res://assets/models/dreamcatcher.obj" type="ArrayMesh" id=55]
+[ext_resource path="res://assets/models/luckycharm.obj" type="ArrayMesh" id=56]
+[ext_resource path="res://assets/textures/Items/voodoo Doll/voodoodoll_voodoodoll_lambert2SG_BaseColor.png" type="Texture" id=57]
+[ext_resource path="res://assets/textures/Items/dreamcatcher/dreamcatcher_stem_BaseColor.png" type="Texture" id=58]
+[ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_BaseColor.png" type="Texture" id=59]
+[ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_Roughness.png" type="Texture" id=60]
+[ext_resource path="res://assets/textures/Items/dreamcatcher/dreamcatcher_stem_Normal.png" type="Texture" id=61]
+[ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_Normal.png" type="Texture" id=62]
+[ext_resource path="res://assets/textures/Items/LuckyCharm/luckycharm_LuckyCharm_Emissive.png" type="Texture" id=63]
+[ext_resource path="res://assets/textures/Items/dreamcatcher/dreamcatcher_stem_Roughness.png" type="Texture" id=64]
+[ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_AO.png" type="Texture" id=65]
+[ext_resource path="res://assets/textures/Items/LuckyCharm/luckycharm_LuckyCharm_Normal.png" type="Texture" id=66]
+[ext_resource path="res://assets/textures/Items/LuckyCharm/luckycharm_LuckyCharm_BaseColor.png" type="Texture" id=67]
+[ext_resource path="res://assets/textures/Items/dreamcatcher/strings.png" type="Texture" id=68]
+[ext_resource path="res://assets/models/dreamcatcher thread_color.png" type="Texture" id=69]
+[ext_resource path="res://assets/models/sleeppowder.OBJ" type="ArrayMesh" id=70]
+[ext_resource path="res://assets/models/voodoodoll.OBJ" type="ArrayMesh" id=71]
+[ext_resource path="res://assets/textures/Items/voodoo Doll/voodoodoll_voodoodoll_lambert2SG_Normal.png" type="Texture" id=72]
+[ext_resource path="res://assets/textures/Items/voodoo Doll/voodoodoll_voodoodoll_lambert2SG_Roughness.png" type="Texture" id=73]
 
 [sub_resource type="CylinderShape" id=7]
 
@@ -232,6 +251,52 @@ ao_light_affect = 0.0
 ao_texture = ExtResource( 52 )
 ao_on_uv2 = false
 ao_texture_channel = 0
+
+[sub_resource type="SpatialMaterial" id=40]
+albedo_texture = ExtResource( 58 )
+roughness_texture = ExtResource( 64 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 61 )
+
+[sub_resource type="SpatialMaterial" id=41]
+flags_transparent = true
+albedo_texture = ExtResource( 69 )
+
+[sub_resource type="SpatialMaterial" id=42]
+flags_transparent = true
+albedo_texture = ExtResource( 68 )
+
+[sub_resource type="SpatialMaterial" id=43]
+albedo_texture = ExtResource( 67 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.05
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 63 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 66 )
+
+[sub_resource type="SpatialMaterial" id=44]
+albedo_texture = ExtResource( 59 )
+roughness_texture = ExtResource( 60 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 62 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 65 )
+ao_on_uv2 = false
+ao_texture_channel = 0
+
+[sub_resource type="SpatialMaterial" id=45]
+albedo_texture = ExtResource( 57 )
+roughness_texture = ExtResource( 73 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 72 )
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
@@ -450,3 +515,25 @@ transform = Transform( 0.733421, 0, 0.811872, 0, 5.9243, 0, -0.821181, 0, 0.7251
 
 [node name="CollisionShape" type="CollisionShape" parent="nWall5"]
 shape = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 3.69686, 3.17091, -6.87272 )
+mesh = ExtResource( 55 )
+material/0 = SubResource( 40 )
+material/1 = SubResource( 41 )
+material/2 = SubResource( 42 )
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 0.337639, 0, 0, 0, 0.337639, 0, 0, 0, 0.337639, -146.883, 32.9199, 17.1604 )
+mesh = ExtResource( 56 )
+material/0 = SubResource( 43 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="MeshInstance"]
+transform = Transform( 0.666688, 0, 0, 0, 0.666688, 0, 0, 0, 0.666688, -83.0523, -2.61894, 10.3586 )
+mesh = ExtResource( 70 )
+material/0 = SubResource( 44 )
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance/MeshInstance2"]
+transform = Transform( -0.124726, 0.0538383, -0.442155, 0.0146166, 0.45941, 0.0518161, 0.445181, 0, -0.125579, 176.749, -26.0704, 251.551 )
+mesh = ExtResource( 71 )
+material/0 = SubResource( 45 )
