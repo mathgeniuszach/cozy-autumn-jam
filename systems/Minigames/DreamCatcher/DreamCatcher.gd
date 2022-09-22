@@ -1,4 +1,6 @@
-extends Spatial
+extends Control
+
+var message = "Mash the given sequence of inputs."
 
 #W->S->D->A->S->W
 
@@ -7,34 +9,35 @@ signal game_finish
 export var fade_time = 0.5
 export var wait_time = 0.5
 
-export var goal = 18.0
-onready var _goal = 1 + goal * 6
-var progress = 0
+export var goal = 40.0
+func set_progress(p):
+	progress = p
+	texture.self_modulate.a = 0.8 * progress/goal + 0.2
+var progress = 0.0 setget set_progress
 
 var current_key = 0
 var wait_timer = 0.0
 var playing = false
 var timer = 0.0
 var target_transparency = 0.0
-var target_texture_transparency = 0.0
 var new_key = false
 
 var key_pattern = [0, 1, 2, 3, 1, 0]
 var possible_keys = ["up", "down", "left", "right"]
-var possible_key_symbols = ["W", "S", "A", "D"]
+var possible_key_symbols = ["^", "v", "<", ">"]
 
-onready var text = $Control/VBoxContainer/RichTextLabel
-onready var texture = $Control/VBoxContainer/TextureRect
+onready var text = $RichTextLabel
+onready var texture = $TextureRect
 
 func _ready():
 	text.bbcode_text = ""
+	texture.self_modulate.a = 0.2
 
 func start():
 	playing = true
 	new_key = true
 	text.self_modulate.a = 0
 	current_key = -1
-	texture.self_modulate.a = 0
 	timer = 0.0
 	wait_timer = 0.0
 	progress = 0
@@ -42,16 +45,14 @@ func start():
 func quit():
 	playing = false
 	text.self_modulate.a = 0
-	texture.self_modulate.a = 0
 	emit_signal("game_finish", false)
 
 func _process(delta):
-	$Control.visible = playing
 	if playing:
 		if Input.is_action_just_pressed("cancel"):
 			quit()
 		
-		if progress >= _goal:
+		if progress >= goal:
 			playing = false
 			emit_signal("game_finish", true)
 		
@@ -71,8 +72,6 @@ func _process(delta):
 			timer = 0
 			new_key = false
 		
-		target_texture_transparency = progress/_goal
-		texture.self_modulate.a = lerp(texture.self_modulate.a, target_texture_transparency, 0.05)
 		text.self_modulate.a = lerp(text.self_modulate.a, target_transparency, 0.2)
 
 func _input(event):
@@ -82,5 +81,5 @@ func _input(event):
 				if current_key < key_pattern.size()-1: current_key += 1
 				else: current_key = 0
 				new_key = true
-				progress += 1
+				self.progress += 1
 

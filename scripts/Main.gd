@@ -18,14 +18,17 @@ onready var World = $World
 onready var Player = $World/Player
 onready var MainCamera = $World/MainCamera
 onready var SideCamera = $World/SideCamera
+onready var MinigameCamera = $World/MinigameCamera
 onready var DoorbellPlayer = $DoorbellPlayer
 onready var MusicPlayer = $MusicPlayer
+
+onready var Help = $UI/Help
 
 var correct_creations = [
 	"LuckyCharm",
 	"VoodooDoll",
 	"DreamCatcher",
-#	"RecoveryPotion",
+	"RecoveryPotion",
 	"MagicMirror",
 	"SleepPowder"
 ]
@@ -37,12 +40,13 @@ var level = 0
 
 func set_state(v):
 	if state != v:
-		if state == GameState.Dialogue:
-			World.unlocked = true
-			World.no_act_time = 0.5
 		state = v
-		if state == GameState.Dialogue:
-			World.unlocked = false
+		match state:
+			GameState.Dialogue, GameState.Minigame:
+				World.unlocked = false
+			GameState.Moving:
+				World.unlocked = true
+				World.no_act_time = 0.25
 	time = 0
 var state = GameState.Opening setget set_state
 var time = 0
@@ -63,6 +67,7 @@ func _process(delta):
 	match state:
 		GameState.Opening:
 			if time >= 0.3:
+				randomize()
 				MusicPlayer.queue_song("calm")
 				Title.animate("open", 3.5)
 				yield(Title, "anim_done")
@@ -79,6 +84,8 @@ func _anim_done(anim: String):
 			yield(Timer, "timeout")
 			
 			# Now display opening dialogue
+			Help.visible = true
+			Help.text = "Interact with the center counter to progress."
 			Player.visible = true
 			$UI/Title/Fader.fade = 0
 			Dialogue.start("opening")
@@ -113,7 +120,11 @@ func _interact(object: String):
 					yield(Title, "anim_done")
 					
 					# Switch camera
+					Player.translation = Vector3(0, 1.5, -4)
+					Player.rotation_degrees.y = 180
+					World.reset_look_angle()
 					SideCamera.current = true
+					Help.visible = false
 					
 					# Fade back in
 					Title.animate("fade_in", 0.5)
@@ -138,7 +149,7 @@ func _interact(object: String):
 						# We beat everything! Transition to end screen.
 						MusicPlayer.queue_song(null)
 						Title.animate("end", 4)
-						Timer.start("2")
+						Timer.start(2)
 						yield(Timer, "timeout")
 						MusicPlayer.queue_song("calm")
 						self.state = GameState.End
@@ -150,11 +161,14 @@ func _interact(object: String):
 					yield(Title, "anim_done")
 					
 					# Switch camera and determine what to do with the customer
+					Help.visible = true
 					MainCamera.current = true
 					if not creating:
 						# Successful submission. Hide the customer, and play bell
+						Help.text = "Interact with the center counter to progress."
 						if level != 4:
 							$World/Customer.visible = false
+							$World/Customer/CollisionShape.disabled = true
 							DoorbellPlayer.play()
 							yield(DoorbellPlayer, "finished")
 					# Fade back in
@@ -179,11 +193,16 @@ func _interact(object: String):
 				# increment level
 				level += 1
 				# Switch camera, add customer model, and bell
+				Help.visible = false
 				SideCamera.current = true
+				Player.translation = Vector3(0, 1.5, -4)
+				Player.rotation_degrees.y = 180
+				World.reset_look_angle()
 				if level != 4:
 					DoorbellPlayer.play()
 					yield(DoorbellPlayer, "finished")
 					$World/Customer.visible = true
+					$World/Customer/CollisionShape.disabled = false
 				
 				# Fade back in, now with character in place
 				MusicPlayer.queue_song("spicy_intro")
@@ -200,6 +219,8 @@ func _interact(object: String):
 				yield(Title, "anim_done")
 				
 				# Switch camera again
+				Help.visible = true
+				Help.text = "Interact with a color station to create an item."
 				MainCamera.current = true
 				
 				# Fade back in
@@ -230,7 +251,7 @@ func _interact(object: String):
 				self.state = GameState.Moving
 				return
 			
-			World.unlocked = false
+			self.state = GameState.Minigame
 			
 			# Fade out
 			Title.animate("fade_out", 0.5)
@@ -239,18 +260,20 @@ func _interact(object: String):
 			# Get minigame
 			created = object.substr(1)
 			var minigame = minigames[created].instance()
-			add_child(minigame)
+			add_child_below_node(World, minigame)
 
 			# Switch camera and move player model
+			Help.text = minigame.message
 			var ptransform = Player.transform
-			# TODO: NEW CAMERA AND PLAYER LOCATION
+			Player.translation = Vector3(9.5, 0.7, -2.5)
+			Player.rotation_degrees.y = 45
+			MinigameCamera.current = true
 
 			# Fade in
 			Title.animate("fade_in", 0.5)
 			yield(Title, "anim_done")
 
 			# Transfer control to minigame
-			self.state = GameState.Minigame
 			minigame.start()
 			var success = yield(minigame, "game_finish")
 			if not success: created = null
@@ -260,6 +283,10 @@ func _interact(object: String):
 			yield(Title, "anim_done")
 
 			# Switch camera and player model back
+			if success:
+				Help.text = "Go back to the counter to progress."
+			else:
+				Help.text = "Interact with a color station to create an item"
 			minigame.queue_free()
 			MainCamera.current = true
 			Player.transform = ptransform
@@ -283,6 +310,3 @@ func _on_anim_request(anim_name):
 			Title.animate("fade_in", 0.5)
 		"fade_out":
 			Title.animate("fade_out", 0.5)
-
-func _minigame_complete():
-	pass

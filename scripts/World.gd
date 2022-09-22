@@ -10,6 +10,7 @@ const move_map = {
 }
 
 onready var Player = $Player
+onready var BigMesh = $BigMesh
 
 export var speed = 3
 export var angular_speed = 10
@@ -21,6 +22,10 @@ var last_move_angle = move_map["down"].angle()
 
 var unlocked = false
 var no_act_time = 0
+
+func reset_look_angle():
+	last_move_vec = Vector3(move_map["down"].y, 0, move_map["down"].x)
+	last_move_angle = move_map["down"].angle()
 
 func _process(delta):
 	if unlocked:
@@ -45,6 +50,7 @@ func _process(delta):
 			if no_act_time < 0: no_act_time = 0
 		else:
 			if Input.is_action_just_pressed("action"):
-				var looking_at = get_world().direct_space_state.intersect_ray(Player.translation, Player.translation + last_move_vec, [Player])
+				var pt = Vector3(Player.translation.x, 1, Player.translation.z)
+				var looking_at = get_world().direct_space_state.intersect_ray(pt, pt + last_move_vec*1.5, [Player, BigMesh])
 				if looking_at and looking_at["collider"]:
 					emit_signal("interact", looking_at["collider"].name)

@@ -1,58 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://systems/Minigames/VoodooDoll/VoodooDoll.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://systems/Minigames/Base.tscn" type="PackedScene" id=2]
 
-[node name="VoodooDoll" type="Spatial"]
+[node name="VoodooDoll" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-goal = 25
-setback_time = 0.3
-shake_time = 0.2
-
-[node name="Control" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -1.18921
-margin_right = -1.18921
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -90.0
-margin_top = -137.0
-margin_right = 90.0
-margin_bottom = 137.0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer"]
-margin_right = 180.0
-margin_bottom = 168.0
-size_flags_horizontal = 7
-size_flags_vertical = 3
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer"]
-margin_top = 172.0
-margin_right = 180.0
-margin_bottom = 274.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-size_flags_stretch_ratio = 0.6
-bbcode_enabled = true
-bbcode_text = "[center]w[/center]"
-text = "w"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+goal = 30.0
+setback_time = 0.5
+shake_time = 0.5

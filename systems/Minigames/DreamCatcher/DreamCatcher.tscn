@@ -1,38 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://assets/AltTheme.tres" type="Theme" id=1]
 [ext_resource path="res://systems/Minigames/DreamCatcher/DreamCatcher.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 
-[node name="DreamCatcher" type="Spatial"]
+[node name="DreamCatcher" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
 script = ExtResource( 2 )
 fade_time = 1.0
 
-[node name="Control" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -1.18921
-margin_right = -1.18921
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -90.0
-margin_top = -137.0
-margin_right = 90.0
-margin_bottom = 137.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer"]
-margin_right = 180.0
-margin_bottom = 168.0
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
 size_flags_horizontal = 7
 size_flags_vertical = 3
 texture = ExtResource( 3 )
@@ -42,16 +29,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer"]
-margin_top = 172.0
-margin_right = 180.0
-margin_bottom = 274.0
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 420.811
+margin_top = 163.0
+margin_right = 600.811
+margin_bottom = 437.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.6
 bbcode_enabled = true
 bbcode_text = "[center]w[/center]"
 text = "w"
-__meta__ = {
-"_edit_use_anchors_": false
-}
