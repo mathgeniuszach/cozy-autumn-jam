@@ -1,14 +1,14 @@
 [gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://scripts/World.gd" type="Script" id=1]
-[ext_resource path="res://assets/models/Imports_Meshes/SM_AllMESHES_OBJ.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://assets/models/Imports_Meshes/Glass.material" type="Material" id=3]
-[ext_resource path="res://assets/models/Imports_Meshes/Tree.material" type="Material" id=4]
-[ext_resource path="res://assets/models/Imports_Meshes/Walls.material" type="Material" id=5]
-[ext_resource path="res://assets/models/Imports_Meshes/Window.material" type="Material" id=6]
-[ext_resource path="res://assets/models/Imports_Meshes/FLoor.material" type="Material" id=7]
-[ext_resource path="res://assets/models/Imports_Meshes/DragonEggs.material" type="Material" id=8]
-[ext_resource path="res://assets/models/Imports_Meshes/CurvedWall.material" type="Material" id=9]
+[ext_resource path="res://assets/Models And Textures/Imports_Meshes/SM_AllMESHES_OBJ.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/Models And Textures/Imports_Meshes/Glass.material" type="Material" id=2]
+[ext_resource path="res://assets/Models And Textures/Imports_Meshes/Tree.material" type="Material" id=3]
+[ext_resource path="res://assets/Models And Textures/Imports_Meshes/FLoor.material" type="Material" id=4]
+[ext_resource path="res://assets/Models And Textures/Imports_Meshes/CurvedWall.material" type="Material" id=5]
+[ext_resource path="res://assets/Models And Textures/Imports_Meshes/Walls.material" type="Material" id=6]
+[ext_resource path="res://assets/Models And Textures/Imports_Meshes/Window.material" type="Material" id=7]
+[ext_resource path="res://assets/Models And Textures/Imports_Meshes/DragonEggs.material" type="Material" id=8]
+[ext_resource path="res://scripts/World.gd" type="Script" id=9]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -72,7 +72,7 @@ albedo_color = Color( 0.580392, 0.133333, 0.133333, 1 )
 material = SubResource( 15 )
 
 [node name="World" type="Spatial"]
-script = ExtResource( 1 )
+script = ExtResource( 9 )
 
 [node name="MainCamera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.635175, 0.772368, 0, -0.772368, 0.635175, 0, 7.89065, 5.19389 )
@@ -197,37 +197,37 @@ mesh = SubResource( 16 )
 
 [node name="SM_AllMESHES_OBJ" type="MeshInstance" parent="."]
 transform = Transform( 0.0157166, 0, 0, 0, 0.0157166, 0, 0, 0, 0.0157166, 0, 2.79559, 0 )
-mesh = ExtResource( 2 )
-material/11 = ExtResource( 3 )
-material/14 = ExtResource( 4 )
-material/15 = ExtResource( 5 )
-material/16 = ExtResource( 6 )
-material/17 = ExtResource( 5 )
-material/19 = ExtResource( 5 )
-material/20 = ExtResource( 4 )
-material/21 = ExtResource( 5 )
-material/23 = ExtResource( 6 )
-material/24 = ExtResource( 7 )
-material/25 = ExtResource( 3 )
-material/26 = ExtResource( 6 )
-material/27 = ExtResource( 9 )
-material/28 = ExtResource( 5 )
-material/30 = ExtResource( 6 )
-material/31 = ExtResource( 5 )
-material/32 = ExtResource( 6 )
-material/36 = ExtResource( 3 )
-material/37 = ExtResource( 6 )
-material/38 = ExtResource( 4 )
-material/39 = ExtResource( 5 )
-material/41 = ExtResource( 5 )
-material/42 = ExtResource( 3 )
-material/43 = ExtResource( 6 )
-material/45 = ExtResource( 5 )
-material/47 = ExtResource( 5 )
-material/48 = ExtResource( 5 )
-material/51 = ExtResource( 6 )
-material/52 = ExtResource( 4 )
-material/53 = ExtResource( 6 )
-material/54 = ExtResource( 5 )
+mesh = ExtResource( 1 )
+material/11 = ExtResource( 2 )
+material/14 = ExtResource( 3 )
+material/15 = ExtResource( 6 )
+material/16 = ExtResource( 7 )
+material/17 = ExtResource( 6 )
+material/19 = ExtResource( 6 )
+material/20 = ExtResource( 3 )
+material/21 = ExtResource( 6 )
+material/23 = ExtResource( 7 )
+material/24 = ExtResource( 4 )
+material/25 = ExtResource( 2 )
+material/26 = ExtResource( 7 )
+material/27 = ExtResource( 5 )
+material/28 = ExtResource( 6 )
+material/30 = ExtResource( 7 )
+material/31 = ExtResource( 6 )
+material/32 = ExtResource( 7 )
+material/36 = ExtResource( 2 )
+material/37 = ExtResource( 7 )
+material/38 = ExtResource( 3 )
+material/39 = ExtResource( 6 )
+material/41 = ExtResource( 6 )
+material/42 = ExtResource( 2 )
+material/43 = ExtResource( 7 )
+material/45 = ExtResource( 6 )
+material/47 = ExtResource( 6 )
+material/48 = ExtResource( 6 )
+material/51 = ExtResource( 7 )
+material/52 = ExtResource( 3 )
+material/53 = ExtResource( 7 )
+material/54 = ExtResource( 6 )
 material/55 = ExtResource( 8 )
-material/56 = ExtResource( 5 )
+material/56 = ExtResource( 6 )
