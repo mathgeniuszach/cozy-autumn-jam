@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/Imports_Meshes/SM_AllMESHES_OBJ.obj" type="ArrayMesh" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/models/Imports_Meshes/FLoor.material" type="Material" id=7]
 [ext_resource path="res://assets/models/Imports_Meshes/DragonEggs.material" type="Material" id=8]
 [ext_resource path="res://assets/models/Imports_Meshes/CurvedWall.material" type="Material" id=9]
+[ext_resource path="res://assets/models/Imports_Meshes/Cauldron.material" type="Material" id=10]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -212,6 +213,7 @@ material/25 = ExtResource( 3 )
 material/26 = ExtResource( 6 )
 material/27 = ExtResource( 9 )
 material/28 = ExtResource( 5 )
+material/29 = ExtResource( 10 )
 material/30 = ExtResource( 6 )
 material/31 = ExtResource( 5 )
 material/32 = ExtResource( 6 )
