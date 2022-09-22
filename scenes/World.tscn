@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=111 format=2]
 
 [ext_resource path="res://scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/Imports_Meshes/SM_AllMESHES_OBJ.obj" type="ArrayMesh" id=2]
@@ -73,6 +73,9 @@
 [ext_resource path="res://assets/models/voodoodoll.OBJ" type="ArrayMesh" id=71]
 [ext_resource path="res://assets/textures/Items/voodoo Doll/voodoodoll_voodoodoll_lambert2SG_Normal.png" type="Texture" id=72]
 [ext_resource path="res://assets/textures/Items/voodoo Doll/voodoodoll_voodoodoll_lambert2SG_Roughness.png" type="Texture" id=73]
+[ext_resource path="res://assets/models/potion.obj" type="ArrayMesh" id=74]
+[ext_resource path="res://assets/models/mirror.obj" type="ArrayMesh" id=75]
+[ext_resource path="res://assets/textures/mirror/SM_AllMESHES_OBJ_mirrors_Roughness.png" type="Texture" id=76]
 
 [sub_resource type="CylinderShape" id=7]
 
@@ -137,7 +140,7 @@ metallic_specular = 0.46
 roughness = 0.24
 emission_enabled = true
 emission = Color( 0.486275, 0.172549, 0.317647, 1 )
-emission_energy = 0.79
+emission_energy = 0.58
 emission_operator = 0
 emission_on_uv2 = false
 
@@ -297,6 +300,18 @@ roughness_texture = ExtResource( 73 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 72 )
+
+[sub_resource type="SpatialMaterial" id=46]
+albedo_texture = ExtResource( 39 )
+roughness_texture = ExtResource( 76 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 42 )
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 40 )
+ao_on_uv2 = false
+ao_texture_channel = 0
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
@@ -534,6 +549,16 @@ mesh = ExtResource( 70 )
 material/0 = SubResource( 44 )
 
 [node name="MeshInstance" type="MeshInstance" parent="MeshInstance/MeshInstance2"]
-transform = Transform( -0.124726, 0.0538383, -0.442155, 0.0146166, 0.45941, 0.0518161, 0.445181, 0, -0.125579, 176.749, -26.0704, 251.551 )
+transform = Transform( -0.124726, 0.0538383, -0.442155, 0.0146166, 0.45941, 0.0518161, 0.445181, 0, -0.125579, 176.879, -26.3059, 251.217 )
 mesh = ExtResource( 71 )
 material/0 = SubResource( 45 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.013237, 0, 0, 0, 0.013237, 0, 0, 0, 0.013237, -5.59459, 1.56856, -3.81996 )
+mesh = ExtResource( 74 )
+material/0 = SubResource( 33 )
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance2"]
+transform = Transform( 0.828575, 0, -0.82979, 0, 1.17264, 0, 0.82979, 0, 0.828575, 455.966, -63.7642, 135.897 )
+mesh = ExtResource( 75 )
+material/0 = SubResource( 46 )
