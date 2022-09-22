@@ -156,7 +156,7 @@ func _interact(object: String):
 						return
 					
 					# Fade out
-					MusicPlayer.queue_song(null)
+					if not creating: MusicPlayer.queue_song(null)
 					Title.animate("fade_out", 0.5)
 					yield(Title, "anim_done")
 					
@@ -171,8 +171,9 @@ func _interact(object: String):
 							$World/Customer/CollisionShape.disabled = true
 							DoorbellPlayer.play()
 							yield(DoorbellPlayer, "finished")
+						
+						MusicPlayer.queue_song("calm")
 					# Fade back in
-					MusicPlayer.queue_song("calm")
 					Title.animate("fade_in", 0.5)
 					yield(Title, "anim_done")
 					

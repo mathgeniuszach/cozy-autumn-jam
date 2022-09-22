@@ -20,6 +20,9 @@ func _ready():
 	animator.playback_speed = 1
 	animator.play("jiggle")
 
+func start():
+	self._state = States.INPUT
+
 func _process(delta):
 	._process(delta)
 	reset_timer -= delta / 0.333

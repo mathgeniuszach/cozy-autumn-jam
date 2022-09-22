@@ -1,10 +1,10 @@
 extends "res://systems/Minigames/Base.gd"
 
-var message = "Mash up, right, down, and left to shake"
+var message = "Mash down, right, up, left to mix"
 
 export var goal = 30.0
 
-var pk = ["up", "right", "down", "left"]
+var pk = ["down", "right", "up", "left"]
 var key = 0
 
 var reset_timer = 1
@@ -18,7 +18,10 @@ var progress = 0.0 setget set_progress
 
 func _ready():
 	animator.playback_speed = 1
-	animator.play("jiggle")
+	animator.play("jiggle_h")
+
+func start():
+	self._state = States.INPUT
 
 func _process(delta):
 	._process(delta)
