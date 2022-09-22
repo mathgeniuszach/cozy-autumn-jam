@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/Imports_Meshes/SM_AllMESHES_OBJ.obj" type="ArrayMesh" id=2]
@@ -6,10 +6,13 @@
 [ext_resource path="res://assets/models/Imports_Meshes/Tree.material" type="Material" id=4]
 [ext_resource path="res://assets/models/Imports_Meshes/Walls.material" type="Material" id=5]
 [ext_resource path="res://assets/models/Imports_Meshes/Window.material" type="Material" id=6]
-[ext_resource path="res://assets/models/Imports_Meshes/FLoor.material" type="Material" id=7]
+[ext_resource path="res://assets/models/Imports_Meshes/Floor.material" type="Material" id=7]
 [ext_resource path="res://assets/models/Imports_Meshes/DragonEggs.material" type="Material" id=8]
 [ext_resource path="res://assets/models/Imports_Meshes/CurvedWall.material" type="Material" id=9]
 [ext_resource path="res://assets/models/Imports_Meshes/Cauldron.material" type="Material" id=10]
+[ext_resource path="res://assets/models/Imports_Meshes/Bookshelf.material" type="Material" id=11]
+[ext_resource path="res://assets/models/Imports_Meshes/Sofa.material" type="Material" id=12]
+[ext_resource path="res://assets/models/Imports_Meshes/FrontDeskWood.material" type="Material" id=13]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -199,11 +202,16 @@ mesh = SubResource( 16 )
 [node name="SM_AllMESHES_OBJ" type="MeshInstance" parent="."]
 transform = Transform( 0.0157166, 0, 0, 0, 0.0157166, 0, 0, 0, 0.0157166, 0, 2.79559, 0 )
 mesh = ExtResource( 2 )
+material/1 = ExtResource( 12 )
+material/9 = ExtResource( 3 )
+material/10 = ExtResource( 13 )
 material/11 = ExtResource( 3 )
+material/12 = ExtResource( 13 )
 material/14 = ExtResource( 4 )
 material/15 = ExtResource( 5 )
 material/16 = ExtResource( 6 )
 material/17 = ExtResource( 5 )
+material/18 = ExtResource( 11 )
 material/19 = ExtResource( 5 )
 material/20 = ExtResource( 4 )
 material/21 = ExtResource( 5 )
