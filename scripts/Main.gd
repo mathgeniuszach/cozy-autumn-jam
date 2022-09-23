@@ -105,6 +105,16 @@ func _anim_done(anim: String):
 
 func _interact(object: String):
 	match object[0]:
+		"d": # Interacted with door
+			Dialogue.start("door")
+			self.state = GameState.Dialogue
+			yield(Dialogue, "dialogue_end")
+			self.state = GameState.Moving
+		"l": # Interacted with cauldron
+			Dialogue.start("cauldron")
+			self.state = GameState.Dialogue
+			yield(Dialogue, "dialogue_end")
+			self.state = GameState.Moving
 		"w": # Interacted with a wall
 			Dialogue.start("wall")
 			self.state = GameState.Dialogue
