@@ -221,7 +221,7 @@ func _interact(object: String):
 				
 				# Switch camera again
 				Help.visible = true
-				Help.text = "Interact with a color station to create an item."
+				Help.text = "Interact with the item you want to create."
 				MainCamera.current = true
 				
 				# Fade back in
@@ -287,7 +287,7 @@ func _interact(object: String):
 			if success:
 				Help.text = "Go back to the counter to progress."
 			else:
-				Help.text = "Interact with a color station to create an item"
+				Help.text = "Interact with the item you want to create."
 			minigame.queue_free()
 			MainCamera.current = true
 			Player.transform = ptransform
