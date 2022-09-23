@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=101 format=2]
 
 [ext_resource path="res://scripts/World.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/Imports_Meshes/SM_AllMESHES_OBJ.obj" type="ArrayMesh" id=2]
@@ -85,42 +85,77 @@
 
 [sub_resource type="BoxShape" id=9]
 
-[sub_resource type="SpatialMaterial" id=17]
-render_priority = 1
-albedo_color = Color( 0.815686, 0.803922, 0.145098, 1 )
+[sub_resource type="CylinderShape" id=48]
 
-[sub_resource type="CubeMesh" id=18]
-material = SubResource( 17 )
+[sub_resource type="SpatialMaterial" id=45]
+albedo_texture = ExtResource( 57 )
+roughness_texture = ExtResource( 73 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 72 )
 
-[sub_resource type="SpatialMaterial" id=19]
-albedo_color = Color( 0.513726, 0.0901961, 0.607843, 1 )
+[sub_resource type="SpatialMaterial" id=43]
+albedo_texture = ExtResource( 67 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.05
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = ExtResource( 63 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 66 )
 
-[sub_resource type="CubeMesh" id=20]
-material = SubResource( 19 )
+[sub_resource type="SpatialMaterial" id=44]
+albedo_texture = ExtResource( 59 )
+roughness_texture = ExtResource( 60 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 62 )
+ao_enabled = true
+ao_light_affect = 0.0
+ao_texture = ExtResource( 65 )
+ao_on_uv2 = false
+ao_texture_channel = 0
 
-[sub_resource type="SpatialMaterial" id=21]
-albedo_color = Color( 0.945098, 0.858824, 0.690196, 1 )
+[sub_resource type="SpatialMaterial" id=40]
+albedo_texture = ExtResource( 58 )
+roughness_texture = ExtResource( 64 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 61 )
 
-[sub_resource type="CubeMesh" id=22]
-material = SubResource( 21 )
+[sub_resource type="SpatialMaterial" id=41]
+flags_transparent = true
+albedo_texture = ExtResource( 69 )
 
-[sub_resource type="SpatialMaterial" id=23]
-albedo_color = Color( 0.172549, 0, 1, 1 )
+[sub_resource type="SpatialMaterial" id=42]
+flags_transparent = true
+albedo_texture = ExtResource( 68 )
 
-[sub_resource type="CubeMesh" id=24]
-material = SubResource( 23 )
+[sub_resource type="SpatialMaterial" id=46]
+albedo_texture = ExtResource( 39 )
+roughness_texture = ExtResource( 76 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 42 )
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource( 40 )
+ao_on_uv2 = false
+ao_texture_channel = 0
 
-[sub_resource type="SpatialMaterial" id=25]
-albedo_color = Color( 0.4, 0.788235, 0.792157, 1 )
+[sub_resource type="SpatialMaterial" id=33]
+albedo_texture = ExtResource( 31 )
+metallic_specular = 0.46
+roughness = 0.24
+emission_enabled = true
+emission = Color( 0.486275, 0.172549, 0.317647, 1 )
+emission_energy = 0.79
+emission_operator = 0
+emission_on_uv2 = false
 
-[sub_resource type="CubeMesh" id=26]
-material = SubResource( 25 )
-
-[sub_resource type="SpatialMaterial" id=27]
-albedo_color = Color( 0.14902, 0.14902, 0.14902, 1 )
-
-[sub_resource type="CubeMesh" id=28]
-material = SubResource( 27 )
+[sub_resource type="CylinderShape" id=47]
 
 [sub_resource type="SpatialMaterial" id=32]
 albedo_texture = ExtResource( 29 )
@@ -133,16 +168,6 @@ ao_light_affect = 0.0
 ao_texture = ExtResource( 27 )
 ao_on_uv2 = false
 ao_texture_channel = 0
-
-[sub_resource type="SpatialMaterial" id=33]
-albedo_texture = ExtResource( 31 )
-metallic_specular = 0.46
-roughness = 0.24
-emission_enabled = true
-emission = Color( 0.486275, 0.172549, 0.317647, 1 )
-emission_energy = 0.58
-emission_operator = 0
-emission_on_uv2 = false
 
 [sub_resource type="SpatialMaterial" id=34]
 albedo_texture = ExtResource( 34 )
@@ -255,69 +280,11 @@ ao_texture = ExtResource( 52 )
 ao_on_uv2 = false
 ao_texture_channel = 0
 
-[sub_resource type="SpatialMaterial" id=40]
-albedo_texture = ExtResource( 58 )
-roughness_texture = ExtResource( 64 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 61 )
-
-[sub_resource type="SpatialMaterial" id=41]
-flags_transparent = true
-albedo_texture = ExtResource( 69 )
-
-[sub_resource type="SpatialMaterial" id=42]
-flags_transparent = true
-albedo_texture = ExtResource( 68 )
-
-[sub_resource type="SpatialMaterial" id=43]
-albedo_texture = ExtResource( 67 )
-emission_enabled = true
-emission = Color( 0, 0, 0, 1 )
-emission_energy = 1.05
-emission_operator = 0
-emission_on_uv2 = false
-emission_texture = ExtResource( 63 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 66 )
-
-[sub_resource type="SpatialMaterial" id=44]
-albedo_texture = ExtResource( 59 )
-roughness_texture = ExtResource( 60 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 62 )
-ao_enabled = true
-ao_light_affect = 0.0
-ao_texture = ExtResource( 65 )
-ao_on_uv2 = false
-ao_texture_channel = 0
-
-[sub_resource type="SpatialMaterial" id=45]
-albedo_texture = ExtResource( 57 )
-roughness_texture = ExtResource( 73 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 72 )
-
-[sub_resource type="SpatialMaterial" id=46]
-albedo_texture = ExtResource( 39 )
-roughness_texture = ExtResource( 76 )
-normal_enabled = true
-normal_scale = 1.0
-normal_texture = ExtResource( 42 )
-ao_enabled = true
-ao_light_affect = 1.0
-ao_texture = ExtResource( 40 )
-ao_on_uv2 = false
-ao_texture_channel = 0
-
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="MainCamera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.605821, 0.795601, 0, -0.795601, 0.605821, 0, 7.7533, 6.53589 )
+transform = Transform( 1, 0, 0, 0, 0.682355, 0.731021, 0, -0.731021, 0.682355, 0, 7.25642, 6.53589 )
 current = true
 far = 300.0
 
@@ -358,65 +325,143 @@ mesh = SubResource( 8 )
 transform = Transform( 0.739351, 0, 0, 0, 0.340675, 0, 0, 0, 1, 0, 0, -0.455176 )
 mesh = SubResource( 6 )
 
-[node name="mLuckyCharm" type="StaticBody" parent="."]
-transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.4, -4.31819, 0.626816, 3.74251 )
+[node name="RoomLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.70081, 0 )
+light_energy = 3.0
+omni_range = 10.0
 
-[node name="CollisionShape" type="CollisionShape" parent="mLuckyCharm"]
+[node name="PotLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54025, 4.81037, -4.22867 )
+light_energy = 9.202
+omni_range = 5.824
+omni_attenuation = 1.62451
+
+[node name="cCounter" type="StaticBody" parent="."]
+transform = Transform( 1.79595, 0, 0, 0, 1, 0, 0, 0, 0.722314, 0.190626, 0.46294, -2.092 )
+
+[node name="CollisionShape" type="CollisionShape" parent="cCounter"]
 shape = SubResource( 9 )
-
-[node name="MeshInstance" type="MeshInstance" parent="mLuckyCharm"]
-transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
-mesh = SubResource( 18 )
 
 [node name="mVoodooDoll" type="StaticBody" parent="."]
-transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.429687, 3.48964, 0.626816, 3.27385 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26586, 0.46294, 3.69854 )
 
 [node name="CollisionShape" type="CollisionShape" parent="mVoodooDoll"]
-shape = SubResource( 9 )
-
-[node name="MeshInstance" type="MeshInstance" parent="mVoodooDoll"]
-transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
-mesh = SubResource( 20 )
+shape = SubResource( 48 )
 
 [node name="mDreamCatcher" type="StaticBody" parent="."]
-transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.417773, -4.24418, 0.626817, 1.66012 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.67501, 0.46294, -6.29944 )
 
 [node name="CollisionShape" type="CollisionShape" parent="mDreamCatcher"]
-shape = SubResource( 9 )
-
-[node name="MeshInstance" type="MeshInstance" parent="mDreamCatcher"]
-transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
-mesh = SubResource( 22 )
-
-[node name="mRecoveryPotion" type="StaticBody" parent="."]
-transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.427762, -4.21102, 0.626816, -1.47902 )
-
-[node name="CollisionShape" type="CollisionShape" parent="mRecoveryPotion"]
-shape = SubResource( 9 )
-
-[node name="MeshInstance" type="MeshInstance" parent="mRecoveryPotion"]
-transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
-mesh = SubResource( 24 )
-
-[node name="mMagicMirror" type="StaticBody" parent="."]
-transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.414212, 3.43752, 0.626816, 1.17876 )
-
-[node name="CollisionShape" type="CollisionShape" parent="mMagicMirror"]
-shape = SubResource( 9 )
-
-[node name="MeshInstance" type="MeshInstance" parent="mMagicMirror"]
-transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
-mesh = SubResource( 26 )
+shape = SubResource( 48 )
 
 [node name="mSleepPowder" type="StaticBody" parent="."]
-transform = Transform( 0.360067, 0, 0, 0, 0.470681, 0, 0, 0, 0.410529, 3.43792, 0.626816, -1.47491 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.495952, 0.46294, -6.17669 )
 
 [node name="CollisionShape" type="CollisionShape" parent="mSleepPowder"]
+shape = SubResource( 48 )
+
+[node name="mRecoveryPotion" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.59324, -5.6634, 0.46294, -2.82603 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mRecoveryPotion"]
+shape = SubResource( 48 )
+
+[node name="mMagicMirror" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.21826, 0.46294, 1.51995 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mMagicMirror"]
+shape = SubResource( 48 )
+
+[node name="mLuckyCharm" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4912, 0.46294, 2.41019 )
+
+[node name="CollisionShape" type="CollisionShape" parent="mLuckyCharm"]
+shape = SubResource( 48 )
+
+[node name="Items" type="Spatial" parent="."]
+
+[node name="VoodooDoll" type="MeshInstance" parent="Items"]
+transform = Transform( -0.00198062, 0.00229275, -0.0197692, 0.000631995, 0.0198641, 0.00224044, 0.0198916, -0.000402828, -0.00203961, 5.16103, 1.00453, 3.61668 )
+mesh = ExtResource( 71 )
+skeleton = NodePath("../SleepPowder")
+material/0 = SubResource( 45 )
+
+[node name="LuckyCharm" type="MeshInstance" parent="Items"]
+transform = Transform( -7.10835e-10, -0.00453309, 0.016262, -1.98148e-10, 0.016262, 0.00453309, -0.016882, 0, -7.37936e-10, -4.92989, 0.472251, 2.46832 )
+mesh = ExtResource( 56 )
+skeleton = NodePath("../DreamCatcher")
+material/0 = SubResource( 43 )
+
+[node name="SleepPowder" type="MeshInstance" parent="Items"]
+transform = Transform( 0.0333344, 0, 0, 0, 0.0333344, 0, 0, 0, 0.0333344, -0.455755, 3.03996, -6.35479 )
+mesh = ExtResource( 70 )
+skeleton = NodePath("../DreamCatcher")
+material/0 = SubResource( 44 )
+
+[node name="DreamCatcher" type="MeshInstance" parent="Items"]
+transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 3.69686, 3.17091, -6.87272 )
+mesh = ExtResource( 55 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 40 )
+material/1 = SubResource( 41 )
+material/2 = SubResource( 42 )
+
+[node name="MagicMirror" type="MeshInstance" parent="Items"]
+transform = Transform( -0.00678227, -0.0177113, -0.00634896, -0.018559, 0.00740698, -0.000837221, 0.00309275, 0.00560759, -0.018947, 4.56245, 0.724513, 1.2681 )
+mesh = ExtResource( 75 )
+skeleton = NodePath("../RecoveryPotion")
+material/0 = SubResource( 46 )
+
+[node name="RecoveryPotion" type="MeshInstance" parent="Items"]
+transform = Transform( 0.013237, 0, 0, 0, 0.013237, 0, 0, 0, 0.013237, -5.59459, 1.56856, -3.81996 )
+mesh = ExtResource( 74 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 33 )
+
+[node name="Walls" type="Spatial" parent="."]
+
+[node name="nWall1" type="StaticBody" parent="Walls"]
+transform = Transform( 7.21049, 0, 0, 0, 5.9243, 0, 0, 0, 0.99882, 0.190626, 0.46294, -6.50562 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/nWall1"]
 shape = SubResource( 9 )
 
-[node name="MeshInstance" type="MeshInstance" parent="mSleepPowder"]
-transform = Transform( 0.996381, 0, 0, 0, 0.996381, 0, 0, 0, 0.996381, 0, 0, 0 )
-mesh = SubResource( 28 )
+[node name="nWall2" type="StaticBody" parent="Walls"]
+transform = Transform( 7.21049, 0, 0, 0, 5.9243, 0, 0, 0, 1.08854, 0.190626, 0.46294, 6.94863 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/nWall2"]
+shape = SubResource( 9 )
+
+[node name="nWall3" type="StaticBody" parent="Walls"]
+transform = Transform( -3.15181e-07, 0, 0.99882, 0, 5.9243, 0, -7.21049, 0, -4.36598e-08, -5.90964, 0.46294, 0.450013 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/nWall3"]
+shape = SubResource( 9 )
+
+[node name="nWall4" type="StaticBody" parent="Walls"]
+transform = Transform( -2.33091e-07, 0, 0.805026, 0, 5.9243, 0, -4.59991, 0, -3.03545e-08, 5.60973, 0.46294, 2.81619 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/nWall4"]
+shape = SubResource( 9 )
+
+[node name="nWall6" type="StaticBody" parent="Walls"]
+transform = Transform( -2.33091e-07, 0, 0.805026, 0, 5.9243, 0, -4.59991, 0, -3.03545e-08, 7.24946, 0.46294, -5.7627 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/nWall6"]
+shape = SubResource( 9 )
+
+[node name="nWall5" type="StaticBody" parent="Walls"]
+transform = Transform( 0.733421, 0, 0.811872, 0, 5.9243, 0, -0.821181, 0, 0.725107, 4.61917, 0.46294, 5.28602 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/nWall5"]
+shape = SubResource( 9 )
+
+[node name="nWall7" type="StaticBody" parent="Walls"]
+transform = Transform( 0.733421, 0, 0.811872, 0, 5.9243, 0, -0.821181, 0, 0.725107, -2.93404, 0.46294, -5.77871 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Walls/nWall7"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0242779, 0, 0.0219316 )
+shape = SubResource( 47 )
 
 [node name="BigMesh" type="MeshInstance" parent="."]
 transform = Transform( -6.86994e-10, 0, -0.0157166, 0, 0.0157166, 0, 0.0157166, 0, -6.86994e-10, 0, 2.79559, 0 )
@@ -477,88 +522,3 @@ material/53 = ExtResource( 6 )
 material/54 = ExtResource( 5 )
 material/55 = ExtResource( 8 )
 material/56 = ExtResource( 5 )
-
-[node name="RoomLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.70081, 0 )
-light_energy = 3.0
-omni_range = 10.0
-
-[node name="PotLight" type="OmniLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54025, 4.81037, -4.22867 )
-light_energy = 9.202
-omni_range = 5.824
-omni_attenuation = 1.62451
-
-[node name="cCounter" type="StaticBody" parent="."]
-transform = Transform( 1.79595, 0, 0, 0, 1, 0, 0, 0, 0.722314, 0.190626, 0.46294, -2.092 )
-
-[node name="CollisionShape" type="CollisionShape" parent="cCounter"]
-shape = SubResource( 9 )
-
-[node name="nWall1" type="StaticBody" parent="."]
-transform = Transform( 7.21049, 0, 0, 0, 5.9243, 0, 0, 0, 0.99882, 0.190626, 0.46294, -6.0486 )
-
-[node name="CollisionShape" type="CollisionShape" parent="nWall1"]
-shape = SubResource( 9 )
-
-[node name="nWall2" type="StaticBody" parent="."]
-transform = Transform( 7.21049, 0, 0, 0, 5.9243, 0, 0, 0, 1.08854, 0.190626, 0.46294, 6.94863 )
-
-[node name="CollisionShape" type="CollisionShape" parent="nWall2"]
-shape = SubResource( 9 )
-
-[node name="nWall3" type="StaticBody" parent="."]
-transform = Transform( -3.15181e-07, 0, 0.99882, 0, 5.9243, 0, -7.21049, 0, -4.36598e-08, -5.90964, 0.46294, 0.450013 )
-
-[node name="CollisionShape" type="CollisionShape" parent="nWall3"]
-shape = SubResource( 9 )
-
-[node name="nWall4" type="StaticBody" parent="."]
-transform = Transform( -2.33091e-07, 0, 0.805026, 0, 5.9243, 0, -4.59991, 0, -3.03545e-08, 5.60973, 0.46294, 2.81619 )
-
-[node name="CollisionShape" type="CollisionShape" parent="nWall4"]
-shape = SubResource( 9 )
-
-[node name="nWall6" type="StaticBody" parent="."]
-transform = Transform( -2.33091e-07, 0, 0.805026, 0, 5.9243, 0, -4.59991, 0, -3.03545e-08, 7.24946, 0.46294, -5.7627 )
-
-[node name="CollisionShape" type="CollisionShape" parent="nWall6"]
-shape = SubResource( 9 )
-
-[node name="nWall5" type="StaticBody" parent="."]
-transform = Transform( 0.733421, 0, 0.811872, 0, 5.9243, 0, -0.821181, 0, 0.725107, 4.61917, 0.46294, 5.28602 )
-
-[node name="CollisionShape" type="CollisionShape" parent="nWall5"]
-shape = SubResource( 9 )
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 3.69686, 3.17091, -6.87272 )
-mesh = ExtResource( 55 )
-material/0 = SubResource( 40 )
-material/1 = SubResource( 41 )
-material/2 = SubResource( 42 )
-
-[node name="MeshInstance" type="MeshInstance" parent="MeshInstance"]
-transform = Transform( 0.337639, 0, 0, 0, 0.337639, 0, 0, 0, 0.337639, -146.883, 32.9199, 17.1604 )
-mesh = ExtResource( 56 )
-material/0 = SubResource( 43 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="MeshInstance"]
-transform = Transform( 0.666688, 0, 0, 0, 0.666688, 0, 0, 0, 0.666688, -83.0523, -2.61894, 10.3586 )
-mesh = ExtResource( 70 )
-material/0 = SubResource( 44 )
-
-[node name="MeshInstance" type="MeshInstance" parent="MeshInstance/MeshInstance2"]
-transform = Transform( -0.124726, 0.0538383, -0.442155, 0.0146166, 0.45941, 0.0518161, 0.445181, 0, -0.125579, 176.879, -26.3059, 251.217 )
-mesh = ExtResource( 71 )
-material/0 = SubResource( 45 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 0.013237, 0, 0, 0, 0.013237, 0, 0, 0, 0.013237, -5.59459, 1.56856, -3.81996 )
-mesh = ExtResource( 74 )
-material/0 = SubResource( 33 )
-
-[node name="MeshInstance" type="MeshInstance" parent="MeshInstance2"]
-transform = Transform( 0.828575, 0, -0.82979, 0, 1.17264, 0, 0.82979, 0, 0.828575, 455.966, -63.7642, 135.897 )
-mesh = ExtResource( 75 )
-material/0 = SubResource( 46 )
