@@ -62,7 +62,6 @@
 [ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_Roughness.png" type="Texture" id=60]
 [ext_resource path="res://assets/textures/Items/dreamcatcher/dreamcatcher_stem_Normal.png" type="Texture" id=61]
 [ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_Normal.png" type="Texture" id=62]
-[ext_resource path="res://assets/textures/Items/LuckyCharm/luckycharm_LuckyCharm_Emissive.png" type="Texture" id=63]
 [ext_resource path="res://assets/textures/Items/dreamcatcher/dreamcatcher_stem_Roughness.png" type="Texture" id=64]
 [ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_AO.png" type="Texture" id=65]
 [ext_resource path="res://assets/textures/Items/LuckyCharm/luckycharm_LuckyCharm_Normal.png" type="Texture" id=66]
@@ -76,6 +75,7 @@
 [ext_resource path="res://assets/models/potion.obj" type="ArrayMesh" id=74]
 [ext_resource path="res://assets/models/mirror.obj" type="ArrayMesh" id=75]
 [ext_resource path="res://assets/textures/mirror/SM_AllMESHES_OBJ_mirrors_Roughness.png" type="Texture" id=76]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=77]
 
 [sub_resource type="CylinderShape" id=7]
 
@@ -104,12 +104,6 @@ normal_texture = ExtResource( 72 )
 
 [sub_resource type="SpatialMaterial" id=43]
 albedo_texture = ExtResource( 67 )
-emission_enabled = true
-emission = Color( 1, 0, 0.913725, 1 )
-emission_energy = 16.0
-emission_operator = 1
-emission_on_uv2 = false
-emission_texture = ExtResource( 63 )
 normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 66 )
@@ -307,15 +301,11 @@ transform = Transform( -0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0
 visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Player"]
+transform = Transform( 1.13878, 0, 0, 0, 2.21642, 0, 0, 0, 1.13878, 0, 0, 0 )
 shape = SubResource( 7 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 2.45686, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 8 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="Player"]
-transform = Transform( 0.739351, 0, 0, 0, 0.340675, 0, 0, 0, 1, 0, 0, -0.455176 )
-mesh = SubResource( 6 )
+[node name="Walking" parent="Player" instance=ExtResource( 77 )]
+transform = Transform( -70, 0, -6.11959e-06, 0, 70, 0, 6.11959e-06, 0, -70, 0, -2.27544, 0 )
 
 [node name="Customer" type="KinematicBody" parent="."]
 transform = Transform( 0.5, 0, 8.74228e-08, 0, 0.5, 0, -8.74228e-08, 0, 0.5, 0.215394, 1.25652, 0.501476 )

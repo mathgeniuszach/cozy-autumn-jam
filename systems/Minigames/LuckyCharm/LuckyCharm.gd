@@ -18,6 +18,9 @@ func _get_possible_keys():
 		9: "9"
 	}
 
+func _get_item():
+	return preload("res://assets/textures/minigames/LuckyCharm.png")
+
 func _is_valid_key(event):
 	return (
 		event is InputEventKey and event.pressed and (

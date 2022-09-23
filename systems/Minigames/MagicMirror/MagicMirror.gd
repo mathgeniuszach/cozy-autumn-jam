@@ -19,6 +19,9 @@ func start():
 	_new_set()
 	emit_signal("show_pattern")
 
+func _get_item():
+	return preload("res://assets/textures/minigames/MagicMirror.png")
+
 func _is_valid_key(event):
 	for k in possible_keys.keys():
 		if event.is_action_pressed(k):

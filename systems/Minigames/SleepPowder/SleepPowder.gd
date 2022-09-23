@@ -16,6 +16,9 @@ func set_progress(p):
 	item.self_modulate.a = (1 - item_alpha_start) * progress/goal + item_alpha_start
 var progress = 0.0 setget set_progress
 
+func _get_item():
+	return preload("res://assets/textures/minigames/DreamCatcher.png")
+
 func _ready():
 	animator.playback_speed = 1
 	animator.play("jiggle_h")

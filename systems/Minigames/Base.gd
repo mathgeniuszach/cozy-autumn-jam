@@ -27,9 +27,13 @@ func _get_possible_keys():
 		"action": "o"
 	}
 
+func _get_item():
+	pass
+
 func _ready():
 	prompt.text = ""
 	prompt.self_modulate.a = 0
+	item.texture = _get_item()
 	item.self_modulate.a = item_alpha_start
 	_get_possible_keys()
 

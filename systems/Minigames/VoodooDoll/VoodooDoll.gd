@@ -15,6 +15,9 @@ var setback_timer = 0.0
 var key = ""
 var key_name = ""
 
+func _get_item():
+	return preload("res://assets/textures/minigames/VoodooDoll.png")
+
 func start():
 	var pkeys = possible_keys.keys()
 	key = pkeys[randi() % pkeys.size()]

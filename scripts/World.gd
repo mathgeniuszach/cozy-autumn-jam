@@ -10,6 +10,7 @@ const move_map = {
 }
 
 onready var Player = $Player
+onready var PlayerAnimator = $Player/Walking/AnimationPlayer
 onready var BigMesh = $BigMesh
 
 export var speed = 3
@@ -23,6 +24,9 @@ var last_move_angle = move_map["down"].angle()
 var unlocked = false
 var no_act_time = 0
 
+func _ready():
+	PlayerAnimator.play("Armature|mixamocom|Layer0")
+
 func reset_look_angle():
 	last_move_vec = Vector3(move_map["down"].y, 0, move_map["down"].x)
 	last_move_angle = move_map["down"].angle()
@@ -35,7 +39,10 @@ func _process(delta):
 				move_vec += move_map[input]
 		move_vec = move_vec.normalized()
 		
-		if move_vec != Vector2.ZERO:
+		if move_vec == Vector2.ZERO:
+			PlayerAnimator.stop(false)
+		else:
+			PlayerAnimator.play("Armature|mixamocom|Layer0")
 			last_move_vec = Vector3(move_vec.y, 0, move_vec.x)
 			last_move_angle = move_vec.angle()
 		

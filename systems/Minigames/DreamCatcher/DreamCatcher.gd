@@ -31,6 +31,7 @@ onready var texture = $TextureRect
 
 func _ready():
 	text.bbcode_text = ""
+	texture.texture = preload("res://assets/textures/minigames/DreamCatcher.png")
 	texture.self_modulate.a = 0.2
 
 func start():
