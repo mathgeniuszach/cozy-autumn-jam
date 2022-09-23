@@ -17,7 +17,7 @@ func set_progress(p):
 var progress = 0.0 setget set_progress
 
 func _get_item():
-	return preload("res://assets/textures/minigames/DreamCatcher.png")
+	return preload("res://assets/textures/minigames/SleepPowder.png")
 
 func _ready():
 	animator.playback_speed = 1

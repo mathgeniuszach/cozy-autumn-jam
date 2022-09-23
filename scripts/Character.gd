@@ -2,6 +2,8 @@ extends Spatial
 
 onready var armature = $Armature
 onready var skeleton = $Armature/Skeleton
+onready var mesh = $Armature/Skeleton/unamed
+onready var animator = $AnimationPlayer
 
 const SQRT2 = sqrt(2)
 

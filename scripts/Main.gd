@@ -143,10 +143,12 @@ func _interact(object: String):
 					# Check if submission was correct
 					if created == correct_creations[level-1]:
 						# Correct submission
+						Help.text = "Interact with the center counter to progress."
 						Dialogue.start("puzzle%d/correct" % level)
 						creating = false
 					else:
 						# Incorrect submission
+						Help.text = "Interact with the item you want to create."
 						Dialogue.start("puzzle%d/incorrect" % level)
 					
 					# "Delete" creation and await dialogue end
@@ -175,7 +177,6 @@ func _interact(object: String):
 					MainCamera.current = true
 					if not creating:
 						# Successful submission. Hide the customer, and play bell
-						Help.text = "Interact with the center counter to progress."
 						if level != 4:
 							$World/Customer.visible = false
 							$World/Customer/CollisionShape.disabled = true
@@ -201,15 +202,20 @@ func _interact(object: String):
 				Title.animate("fade_out", 0.5)
 				yield(Title, "anim_done")
 				
-				# increment level
-				level += 1
-				# Switch camera, add customer model, and bell
+				# Switch camera and customer model
 				Help.visible = false
 				SideCamera.current = true
 				Player.translation = Vector3(0, 1.5, -4)
 				Player.rotation_degrees.y = 180
+				
 				World.reset_look_angle()
+				
+				# increment level and sound bell
+				level += 1
+				
 				if level != 4:
+					print(level)
+					World.switch_customer(level-1)
 					DoorbellPlayer.play()
 					yield(DoorbellPlayer, "finished")
 					$World/Customer.visible = true
@@ -278,6 +284,7 @@ func _interact(object: String):
 			var ptransform = Player.transform
 			Player.translation = Vector3(9.5, 0.7, -2.5)
 			Player.rotation_degrees.y = 45
+			World.PlayerAnimator.play("Reset")
 			MinigameCamera.current = true
 
 			# Fade in

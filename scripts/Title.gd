@@ -4,6 +4,8 @@ signal anim_done(anim)
 
 func _anim_done(anim: String):
 	emit_signal("anim_done", anim)
+	if anim == "play":
+		$Credits.visible = false
 
 func animate(anim: String, time: float):
 	$Animator.play(anim, -1, 1/time)

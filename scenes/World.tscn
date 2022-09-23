@@ -62,6 +62,7 @@
 [ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_Roughness.png" type="Texture" id=60]
 [ext_resource path="res://assets/textures/Items/dreamcatcher/dreamcatcher_stem_Normal.png" type="Texture" id=61]
 [ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_Normal.png" type="Texture" id=62]
+[ext_resource path="res://assets/models/Characters/Mushroomwitch.OBJ" type="ArrayMesh" id=63]
 [ext_resource path="res://assets/textures/Items/dreamcatcher/dreamcatcher_stem_Roughness.png" type="Texture" id=64]
 [ext_resource path="res://assets/textures/Items/SleepPowder/sleeppowder_sleeppowder_AO.png" type="Texture" id=65]
 [ext_resource path="res://assets/textures/Items/LuckyCharm/luckycharm_LuckyCharm_Normal.png" type="Texture" id=66]
@@ -75,13 +76,16 @@
 [ext_resource path="res://assets/models/potion.obj" type="ArrayMesh" id=74]
 [ext_resource path="res://assets/models/mirror.obj" type="ArrayMesh" id=75]
 [ext_resource path="res://assets/textures/mirror/SM_AllMESHES_OBJ_mirrors_Roughness.png" type="Texture" id=76]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=77]
+[ext_resource path="res://scenes/Character.tscn" type="PackedScene" id=77]
 
 [sub_resource type="CylinderShape" id=7]
 
-[sub_resource type="CylinderMesh" id=8]
-
-[sub_resource type="CylinderMesh" id=6]
+[sub_resource type="SpatialMaterial" id=53]
+flags_transparent = true
+flags_unshaded = true
+params_diffuse_mode = 4
+params_depth_draw_mode = 1
+albedo_color = Color( 0.447059, 0, 0.152941, 0.415686 )
 
 [sub_resource type="BoxShape" id=9]
 
@@ -291,7 +295,7 @@ current = true
 far = 300.0
 
 [node name="SideCamera" type="Camera" parent="."]
-transform = Transform( -0.555573, 0.50046, -0.663987, 0.0104212, 0.8027, 0.596291, 0.831402, 0.324364, -0.451174, -4.16755, 3.82583, -3.84852 )
+transform = Transform( -0.572407, -0.42891, 0.698847, 0.0169592, 0.845909, 0.533058, -0.819794, 0.316978, -0.47693, 3.77749, 3.35956, -4.34113 )
 
 [node name="MinigameCamera" type="Camera" parent="."]
 transform = Transform( -4.12042e-08, 0.333807, -0.942641, 1.45912e-08, 0.942641, 0.333807, 1, 8.88178e-16, -4.37114e-08, 4.4539, 3.4768, -4.41647 )
@@ -304,24 +308,22 @@ visible = false
 transform = Transform( 1.13878, 0, 0, 0, 2.21642, 0, 0, 0, 1.13878, 0, 0, 0 )
 shape = SubResource( 7 )
 
-[node name="Walking" parent="Player" instance=ExtResource( 77 )]
+[node name="Character" parent="Player" instance=ExtResource( 77 )]
 transform = Transform( -70, 0, -6.11959e-06, 0, 70, 0, 6.11959e-06, 0, -70, 0, -2.27544, 0 )
 
 [node name="Customer" type="KinematicBody" parent="."]
-transform = Transform( 0.5, 0, 8.74228e-08, 0, 0.5, 0, -8.74228e-08, 0, 0.5, 0.215394, 1.25652, 0.501476 )
+transform = Transform( 0.5, 0, 8.74228e-08, 0, 0.5, 0, -8.74228e-08, 0, 0.5, 0.215394, 2.49263, 0.501476 )
 visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Customer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.70009, 0 )
 shape = SubResource( 7 )
 disabled = true
 
 [node name="MeshInstance" type="MeshInstance" parent="Customer"]
-transform = Transform( 1, 0, 0, 0, 2.19629, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 8 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="Customer"]
-transform = Transform( 0.739351, 0, 0, 0, 0.340675, 0, 0, 0, 1, 0, 0, -0.455176 )
-mesh = SubResource( 6 )
+transform = Transform( -50, 0, -7.54979e-06, 0, 50, 0, 7.54979e-06, 0, -50, 0, -4.46775, 0 )
+mesh = ExtResource( 63 )
+material/0 = SubResource( 53 )
 
 [node name="RoomLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.70081, 0 )
@@ -331,6 +333,27 @@ omni_range = 10.0
 [node name="PotLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54025, 4.81037, -4.22867 )
 light_energy = 9.202
+omni_range = 5.824
+omni_attenuation = 1.62451
+
+[node name="VoodooDollLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7848, 1.51377, 3.83213 )
+light_energy = 1.5
+omni_range = 5.824
+omni_attenuation = 1.62451
+
+[node name="MirrorLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.08632, 0.657528, 1.35206 )
+omni_range = 5.824
+omni_attenuation = 1.62451
+
+[node name="DreamCatcherLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75689, 2.84856, -5.52191 )
+omni_range = 5.824
+omni_attenuation = 1.62451
+
+[node name="SleepPowderLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.478669, 2.84856, -5.52191 )
 omni_range = 5.824
 omni_attenuation = 1.62451
 
